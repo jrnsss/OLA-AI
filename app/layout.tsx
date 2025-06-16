@@ -3,22 +3,20 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import { LanguageProvider } from "@/contexts/language-context"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
-// Import the AdvancedTransition component instead of PageTransition
-import AdvancedTransition from "@/components/advanced-transition"
-import MotionProvider from "@/components/motion-provider"
+import SmoothPageTransition from "@/components/smooth-page-transition"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "OLA AI - Biar Komentar Pelanggan Dijawab Otomatis",
+  title: "STAVI AI - Biar Pesan Pelanggan Dijawab Otomatis",
   description:
-    "AI Agent untuk bisnis di media sosial yang membalas komentar pelanggan secara otomatis di Instagram dan Facebook",
+    "AI Agent untuk bisnis di media sosial yang membalas pesan dan komentar pelanggan secara otomatis di WhatsApp, Instagram, dan Facebook",
     generator: 'v0.dev'
 }
 
-// Update the RootLayout component to use AdvancedTransition
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -27,16 +25,15 @@ export default function RootLayout({
   return (
     <html lang="id" suppressHydrationWarning>
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          <MotionProvider>
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+          <LanguageProvider>
+            <SmoothPageTransition />
             <div className="flex min-h-screen flex-col">
               <Navbar />
-              <main className="flex-1">
-                <AdvancedTransition>{children}</AdvancedTransition>
-              </main>
+              <main className="flex-1 pt-16">{children}</main>
               <Footer />
             </div>
-          </MotionProvider>
+          </LanguageProvider>
         </ThemeProvider>
       </body>
     </html>

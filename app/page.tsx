@@ -1,319 +1,299 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
+"use client"
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { CheckCircle, MessageCircle, Palette, Shield, Instagram, Facebook, MessageSquare } from "lucide-react"
-import SimpleChatAnimation from "@/components/simple-chat-animation"
-import FloatingBallsAnimation from "@/components/floating-balls-animation"
+import SimpleTextAnimation from "@/components/simple-text-animation"
+import EnhancedHero from "@/components/enhanced-hero"
+import AnimatedOrderProcess from "@/components/animated-order-process"
+import ScrollReveal from "@/components/scroll-reveal"
+import EnhancedButton from "@/components/enhanced-button"
+import { useLanguage } from "@/contexts/language-context"
+import Link from "next/link"
+import AdvancedFeaturesShowcase from "@/components/advanced-features-showcase"
 
-export default function Home() {
+function HomePage() {
+  const { t, isLoaded } = useLanguage()
+
+  // Show loading state while language context is loading
+  if (!isLoaded) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-600 dark:text-gray-300">Loading STAVI AI...</p>
+        </div>
+      </div>
+    )
+  }
+
   return (
-    <div>
-      {/* Hero Section */}
-      <section className="py-12 md:py-24 bg-gradient-to-b from-blue-50 to-white">
-        <div className="container px-4 md:px-6">
-          <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
-            <div className="space-y-4">
-              <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
-                Solusi AI untuk Bisnis Online
-              </div>
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                OLA AI – Biar Pesan Pelanggan Dijawab Otomatis
-              </h1>
-              <p className="text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Hemat waktu dan sumber daya dengan AI yang mengelola interaksi pelanggan secara otomatis, meningkatkan
-                efisiensi bisnis Anda 24/7.
+    <div className="overflow-hidden">
+      {/* Enhanced Hero Section */}
+      <EnhancedHero />
+
+      {/* Animated Order Process Section */}
+      <ScrollReveal>
+        <section className="py-16 md:py-24 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm">
+          <div className="container px-4 md:px-6">
+            <div className="text-center space-y-4 mb-12">
+              <h2 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl dark:text-white">
+                {t("section.process.title")}
+              </h2>
+              <p className="mx-auto max-w-3xl text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
+                {t("section.process.subtitle")}
               </p>
-              <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                <Button size="lg" asChild>
-                  <Link href="/kontak">Coba Demo Gratis</Link>
-                </Button>
-                <Button size="lg" variant="outline" asChild>
-                  <Link href="/kontak">Hubungi Kami</Link>
-                </Button>
-              </div>
             </div>
-            <div className="mx-auto lg:mx-0 relative">
-              <div className="relative h-[350px] w-full overflow-hidden rounded-xl bg-gray-100 p-4 shadow-lg">
-                <div className="absolute top-4 left-4 right-4 h-8 bg-white rounded-md flex items-center px-3">
-                  <div className="flex space-x-2">
-                    <div className="h-3 w-3 rounded-full bg-red-500"></div>
-                    <div className="h-3 w-3 rounded-full bg-yellow-500"></div>
-                    <div className="h-3 w-3 rounded-full bg-green-500"></div>
-                  </div>
-                </div>
-                <div className="mt-10 space-y-4">
-                  <div className="bg-white p-3 rounded-lg shadow-sm">
-                    <div className="flex items-start gap-3">
-                      <div className="h-10 w-10 rounded-full bg-gray-200"></div>
-                      <div>
-                        <p className="text-sm font-medium">Pelanggan</p>
-                        <p className="text-sm text-gray-600">Produk ini masih ada gak?</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="bg-blue-50 p-3 rounded-lg shadow-sm ml-12">
-                    <div className="flex items-start gap-3">
-                      <div>
-                        <p className="text-sm font-medium">OLA AI</p>
-                        <p className="text-sm text-gray-600">
-                          Halo! Makasih udah nanya. Yoi, produk ini masih ada dan siap dikirim. Lo mau pesen sekarang?
-                        </p>
-                      </div>
-                      <div className="h-10 w-10 rounded-full bg-blue-200 flex items-center justify-center">
-                        <span className="text-blue-600 font-bold text-xs">AI</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="bg-white p-3 rounded-lg shadow-sm">
-                    <div className="flex items-start gap-3">
-                      <div className="h-10 w-10 rounded-full bg-gray-200"></div>
-                      <div>
-                        <p className="text-sm font-medium">Pelanggan</p>
-                        <p className="text-sm text-gray-600">Iya, mau pesen. Berapa harganya?</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="bg-blue-50 p-3 rounded-lg shadow-sm ml-12">
-                    <div className="flex items-start gap-3">
-                      <div>
-                        <p className="text-sm font-medium">OLA AI</p>
-                        <p className="text-sm text-gray-600">
-                          Harganya 150rb udah termasuk ongkir buat area Jabodetabek. Lo bisa langsung checkout di link
-                          ini: [link toko]
-                        </p>
-                      </div>
-                      <div className="h-10 w-10 rounded-full bg-blue-200 flex items-center justify-center">
-                        <span className="text-blue-600 font-bold text-xs">AI</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+
+            <AnimatedOrderProcess />
+          </div>
+        </section>
+      </ScrollReveal>
+
+      {/* Simple Text Animation Section - Replaced Floating Balls */}
+      <ScrollReveal direction="left">
+        <section className="py-16 md:py-24 bg-gradient-to-b from-white/30 to-blue-50/30 dark:from-gray-900/30 dark:to-gray-800/30 backdrop-blur-sm">
+          <div className="container px-4 md:px-6">
+            <div className="text-center space-y-4 mb-12">
+              <h2 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl dark:text-white">
+                {t("section.tech.title")}
+              </h2>
+              <p className="mx-auto max-w-3xl text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
+                {t("section.tech.subtitle")}
+              </p>
             </div>
+
+            <SimpleTextAnimation />
           </div>
-        </div>
-      </section>
+        </section>
+      </ScrollReveal>
 
-      {/* Floating Balls Animation Section */}
-      <section className="py-12 md:py-20 bg-gradient-to-b from-white to-blue-50">
-        <div className="container px-4 md:px-6">
-          <div className="text-center space-y-4 mb-8">
-            <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Teknologi AI yang Mudah Diadopsi</h2>
-            <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed">
-              Majukan bisnis tanpa mengubah alur kerja yang sudah ada. OLA AI menyempurnakan operasional dengan tetap
-              mempertahankan nilai inti bisnis Anda.
-            </p>
+      {/* Advanced Features Showcase Section */}
+      <ScrollReveal direction="right">
+        <section className="py-16 md:py-24 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm">
+          <div className="container px-4 md:px-6">
+            <div className="text-center space-y-4 mb-12">
+              <h2 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl dark:text-white">
+                {t("section.platform.title")}
+              </h2>
+              <p className="mx-auto max-w-3xl text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
+                {t("section.platform.subtitle")}
+              </p>
+            </div>
+
+            <AdvancedFeaturesShowcase />
           </div>
-
-          <FloatingBallsAnimation />
-        </div>
-      </section>
-
-      {/* 3D Animation Section */}
-      <section className="py-12 md:py-24 bg-white">
-        <div className="container px-4 md:px-6">
-          <div className="text-center space-y-4 mb-8">
-            <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Layanan Otomatis di Semua Platform</h2>
-            <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed">
-              OLA AI bekerja di berbagai platform komunikasi untuk bisnis kamu
-            </p>
-          </div>
-
-          <SimpleChatAnimation />
-        </div>
-      </section>
+        </section>
+      </ScrollReveal>
 
       {/* Features Section */}
-      <section className="py-12 md:py-24 bg-gray-50">
-        <div className="container px-4 md:px-6">
-          <div className="text-center space-y-4 mb-12">
-            <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Fitur Utama OLA AI</h2>
-            <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed">
-              Solusi lengkap untuk mengelola komunikasi dengan pelanggan
-            </p>
+      <ScrollReveal>
+        <section className="py-16 md:py-24 bg-gray-50/50 dark:bg-gray-800/50 backdrop-blur-sm">
+          <div className="container px-4 md:px-6">
+            <div className="text-center space-y-4 mb-16">
+              <h2 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl dark:text-white">
+                {t("features.title")}
+              </h2>
+              <p className="mx-auto max-w-3xl text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
+                {t("features.subtitle")}
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {[
+                {
+                  icon: MessageCircle,
+                  title: t("feature.auto.title"),
+                  description: t("feature.auto.desc"),
+                },
+                {
+                  icon: Palette,
+                  title: t("feature.brand.title"),
+                  description: t("feature.brand.desc"),
+                },
+                {
+                  icon: Shield,
+                  title: t("feature.sentiment.title"),
+                  description: t("feature.sentiment.desc"),
+                },
+                {
+                  icon: MessageSquare,
+                  title: t("feature.multi.title"),
+                  description: t("feature.multi.desc"),
+                },
+              ].map((feature, index) => (
+                <ScrollReveal key={index} delay={index * 0.1}>
+                  <Card className="h-full hover:shadow-lg transition-all duration-300 group cursor-pointer bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border-0 shadow-md">
+                    <CardHeader className="pb-4">
+                      <div className="w-16 h-16 rounded-full bg-blue-100/80 dark:bg-blue-900/50 backdrop-blur-sm flex items-center justify-center mb-4 group-hover:bg-blue-200/80 dark:group-hover:bg-blue-800/50 transition-colors">
+                        <feature.icon className="h-8 w-8 text-blue-600 dark:text-blue-400" />
+                      </div>
+                      <CardTitle className="text-xl dark:text-white">{feature.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <CardDescription className="text-base leading-relaxed dark:text-gray-300">
+                        {feature.description}
+                      </CardDescription>
+                    </CardContent>
+                  </Card>
+                </ScrollReveal>
+              ))}
+            </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Card>
-              <CardHeader className="pb-2">
-                <MessageCircle className="h-12 w-12 text-blue-600 mb-2" />
-                <CardTitle>Respon Otomatis</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>
-                  Balas pesan dan komentar pelanggan secara real-time, 24/7, tanpa perlu kamu online terus-menerus.
-                </CardDescription>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="pb-2">
-                <Palette className="h-12 w-12 text-blue-600 mb-2" />
-                <CardTitle>Sesuai Brand Kamu</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>
-                  Bahasa dan gaya komunikasi dapat disesuaikan dengan karakter brand bisnis kamu.
-                </CardDescription>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="pb-2">
-                <Shield className="h-12 w-12 text-blue-600 mb-2" />
-                <CardTitle>Kenali Sentimen</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>
-                  Secara otomatis mengenali dan menanggapi pesan dengan sentimen negatif atau positif dengan tepat.
-                </CardDescription>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="pb-2">
-                <MessageSquare className="h-12 w-12 text-blue-600 mb-2" />
-                <CardTitle>Multi-Platform</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription>
-                  Terhubung dengan WhatsApp, Instagram, dan Facebook untuk pengalaman yang mulus.
-                </CardDescription>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
+        </section>
+      </ScrollReveal>
 
       {/* Benefits Section */}
-      <section className="py-12 md:py-24 bg-white">
-        <div className="container px-4 md:px-6">
-          <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
-            <div className="space-y-4">
-              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Mengapa Bisnis Kamu Perlu OLA AI?</h2>
-              <p className="text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Tingkatkan efisiensi dan kepuasan pelanggan dengan bantuan AI yang cerdas
-              </p>
-              <ul className="space-y-4">
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5" />
-                  <div>
-                    <h3 className="font-medium">Hemat Waktu & Tenaga</h3>
-                    <p className="text-sm text-gray-500">Gak perlu lagi balas pesan satu per satu secara manual.</p>
-                  </div>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5" />
-                  <div>
-                    <h3 className="font-medium">Layanan 24/7</h3>
-                    <p className="text-sm text-gray-500">
-                      Pelanggan dapet respon cepat kapan pun, bahkan pas kamu tidur.
-                    </p>
-                  </div>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5" />
-                  <div>
-                    <h3 className="font-medium">Tingkatkan Konversi</h3>
-                    <p className="text-sm text-gray-500">Respon cepat bikin pelanggan lebih gampang buat beli.</p>
-                  </div>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0 mt-0.5" />
-                  <div>
-                    <h3 className="font-medium">Konsistensi Komunikasi</h3>
-                    <p className="text-sm text-gray-500">
-                      Pastiin semua pelanggan dapet kualitas respon yang sama bagusnya.
-                    </p>
-                  </div>
-                </li>
-              </ul>
-              <div className="flex flex-col gap-2 min-[400px]:flex-row pt-4">
-                <Button size="lg" asChild>
-                  <Link href="/kontak">Mulai Sekarang</Link>
-                </Button>
-              </div>
-            </div>
-            <div className="mx-auto lg:mx-0 grid grid-cols-2 gap-4">
-              <div className="flex flex-col gap-4">
-                <div className="rounded-xl bg-blue-100 p-6 flex items-center justify-center h-40">
-                  <Instagram className="h-16 w-16 text-blue-600" />
+      <ScrollReveal direction="left">
+        <section className="py-16 md:py-24 bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm">
+          <div className="container px-4 md:px-6">
+            <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+              <div className="space-y-8">
+                <div className="space-y-4">
+                  <h2 className="text-3xl font-bold tracking-tight md:text-4xl lg:text-5xl dark:text-white">
+                    {t("benefits.title")}
+                  </h2>
+                  <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">{t("benefits.subtitle")}</p>
                 </div>
-                <div className="rounded-xl bg-blue-50 p-6 flex items-center justify-center h-56">
-                  <div className="text-center">
-                    <h3 className="font-bold text-xl mb-2">90%</h3>
-                    <p className="text-sm text-gray-600">Penghematan waktu untuk mengelola komunikasi</p>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-col gap-4">
-                <div className="rounded-xl bg-blue-50 p-6 flex items-center justify-center h-56">
-                  <div className="text-center">
-                    <h3 className="font-bold text-xl mb-2">24/7</h3>
-                    <p className="text-sm text-gray-600">Layanan pelanggan non-stop</p>
-                  </div>
-                </div>
-                <div className="rounded-xl bg-blue-100 p-6 flex items-center justify-center h-40">
-                  <Facebook className="h-16 w-16 text-blue-600" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* CTA Section */}
-      <section className="py-12 md:py-24 bg-gradient-to-b from-white to-blue-50">
-        <div className="container px-4 md:px-6">
-          <div className="rounded-xl bg-blue-600 p-8 md:p-12 shadow-lg">
-            <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
-              <div className="space-y-4">
-                <h2 className="text-3xl font-bold tracking-tighter text-white md:text-4xl">
-                  Siap Menghemat Waktu dan Ningkatin Layanan Pelanggan?
-                </h2>
-                <p className="text-blue-100 md:text-xl/relaxed">
-                  Coba OLA AI sekarang dan rasakan transformasi digital yang mulus untuk bisnis Anda.
-                </p>
-                <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                  <Button size="lg" variant="secondary" asChild>
-                    <Link href="/kontak">Hubungi Kami</Link>
-                  </Button>
-                  <Button
+                <ul className="space-y-6">
+                  {[
+                    {
+                      title: t("benefit.save.title"),
+                      description: t("benefit.save.desc"),
+                    },
+                    {
+                      title: t("benefit.247.title"),
+                      description: t("benefit.247.desc"),
+                    },
+                    {
+                      title: t("benefit.convert.title"),
+                      description: t("benefit.convert.desc"),
+                    },
+                    {
+                      title: t("benefit.consistent.title"),
+                      description: t("benefit.consistent.desc"),
+                    },
+                  ].map((benefit, index) => (
+                    <ScrollReveal key={index} delay={index * 0.1}>
+                      <li className="flex items-start gap-4">
+                        <CheckCircle className="h-6 w-6 text-green-600 flex-shrink-0 mt-1" />
+                        <div>
+                          <h3 className="text-lg font-semibold mb-2 dark:text-white">{benefit.title}</h3>
+                          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{benefit.description}</p>
+                        </div>
+                      </li>
+                    </ScrollReveal>
+                  ))}
+                </ul>
+
+                <div className="pt-4">
+                  <EnhancedButton
                     size="lg"
-                    variant="outline"
-                    className="bg-transparent text-white border-white hover:bg-white hover:text-blue-600"
+                    className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4"
                     asChild
                   >
-                    <Link href="/kontak">Lihat Demo</Link>
-                  </Button>
+                    <Link href="/kontak">Mulai Sekarang</Link>
+                  </EnhancedButton>
                 </div>
               </div>
-              <div className="mx-auto lg:mx-0">
-                <div className="rounded-xl bg-white/10 p-6 backdrop-blur-sm">
-                  <div className="space-y-2 text-center">
-                    <h3 className="text-xl font-bold text-white">Apa Kata Pengguna Kami</h3>
-                    <div className="flex justify-center">
-                      <div className="flex">
-                        {[...Array(5)].map((_, i) => (
-                          <svg
-                            key={i}
-                            className="h-5 w-5 fill-current text-yellow-400"
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24"
-                          >
-                            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-                          </svg>
-                        ))}
+
+              <ScrollReveal direction="right">
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="flex flex-col gap-6">
+                    <div className="rounded-2xl bg-blue-100/80 dark:bg-blue-900/50 backdrop-blur-sm p-8 flex items-center justify-center h-48 hover:bg-blue-200/80 dark:hover:bg-blue-800/50 transition-colors border-0 shadow-md">
+                      <Instagram className="h-20 w-20 text-blue-600 dark:text-blue-400" />
+                    </div>
+                    <div className="rounded-2xl bg-blue-50/80 dark:bg-blue-900/30 backdrop-blur-sm p-8 flex items-center justify-center h-64 hover:bg-blue-100/80 dark:hover:bg-blue-800/30 transition-colors border-0 shadow-md">
+                      <div className="text-center">
+                        <h3 className="font-bold text-3xl mb-3 text-blue-600 dark:text-blue-400">90%</h3>
+                        <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                          Penghematan waktu untuk mengelola komunikasi
+                        </p>
                       </div>
                     </div>
-                    <blockquote className="text-blue-50 italic">
-                      "OLA AI udah ngirit waktu gue sampe 3 jam sehari. Sekarang gue bisa fokus ngembangain produk baru
-                      tanpa khawatir chat pelanggan terabaikan."
-                    </blockquote>
-                    <p className="text-blue-100 font-medium">Rina Wijaya, Pemilik Toko Online</p>
+                  </div>
+                  <div className="flex flex-col gap-6">
+                    <div className="rounded-2xl bg-blue-50/80 dark:bg-blue-900/30 backdrop-blur-sm p-8 flex items-center justify-center h-64 hover:bg-blue-100/80 dark:hover:bg-blue-800/30 transition-colors border-0 shadow-md">
+                      <div className="text-center">
+                        <h3 className="font-bold text-3xl mb-3 text-blue-600 dark:text-blue-400">24/7</h3>
+                        <p className="text-gray-600 dark:text-gray-300 leading-relaxed">Layanan pelanggan non-stop</p>
+                      </div>
+                    </div>
+                    <div className="rounded-2xl bg-blue-100/80 dark:bg-blue-900/50 backdrop-blur-sm p-8 flex items-center justify-center h-48 hover:bg-blue-200/80 dark:hover:bg-blue-800/50 transition-colors border-0 shadow-md">
+                      <Facebook className="h-20 w-20 text-blue-600 dark:text-blue-400" />
+                    </div>
+                  </div>
+                </div>
+              </ScrollReveal>
+            </div>
+          </div>
+        </section>
+      </ScrollReveal>
+
+      {/* CTA Section */}
+      <ScrollReveal>
+        <section className="py-16 md:py-24 bg-gradient-to-br from-blue-600/90 to-purple-700/90 backdrop-blur-sm">
+          <div className="container px-4 md:px-6">
+            <div className="rounded-3xl bg-white/10 backdrop-blur-sm p-8 md:p-16 shadow-2xl border-0">
+              <div className="grid gap-8 lg:grid-cols-2 lg:gap-16 items-center">
+                <div className="space-y-6">
+                  <h2 className="text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl">
+                    {t("cta.title")}
+                  </h2>
+                  <p className="text-xl text-blue-100 leading-relaxed">{t("cta.subtitle")}</p>
+                  <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                    <EnhancedButton
+                      variant="secondary"
+                      size="lg"
+                      className="bg-white/90 text-blue-600 hover:bg-white backdrop-blur-sm px-8 py-4"
+                      asChild
+                    >
+                      <Link href="/kontak">{t("cta.contact")}</Link>
+                    </EnhancedButton>
+                    <EnhancedButton
+                      variant="outline"
+                      size="lg"
+                      className="border-2 border-white/80 text-white hover:bg-white/20 backdrop-blur-sm px-8 py-4"
+                      asChild
+                    >
+                      <Link href="/kontak">{t("cta.demo")}</Link>
+                    </EnhancedButton>
+                  </div>
+                </div>
+
+                <div className="relative">
+                  <div className="rounded-2xl bg-white/10 backdrop-blur-sm p-8 border-0">
+                    <div className="space-y-4 text-center">
+                      <h3 className="text-2xl font-bold text-white">{t("cta.testimonial")}</h3>
+                      <div className="flex justify-center">
+                        <div className="flex">
+                          {[...Array(5)].map((_, i) => (
+                            <svg
+                              key={i}
+                              className="h-6 w-6 fill-current text-yellow-400"
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                            >
+                              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+                            </svg>
+                          ))}
+                        </div>
+                      </div>
+                      <blockquote className="text-blue-50 italic text-lg leading-relaxed">
+                        "{t("cta.quote")}"
+                      </blockquote>
+                      <p className="text-blue-100 font-semibold">{t("cta.author")}</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </ScrollReveal>
     </div>
   )
+}
+
+export default function Home() {
+  return <HomePage />
 }
